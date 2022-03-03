@@ -1,8 +1,8 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes } from 'react-router-dom';
 
-import { AddTIL } from "./views/AddTIL";
-import { Home } from "./views/Home";
-import { TIL } from "./views/TIL";
+import { AddTIL } from './views/AddTIL';
+import { Home } from './views/Home';
+import { TIL } from './views/TIL';
 
 function App() {
   return (
@@ -11,10 +11,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/til/:id" element={<TIL />} />
         <Route path="/add/til" element={<AddTIL />} />
-        <Route
-          path="*"
-          element={<h1>Oops! Page not found</h1>}
-        />
+        <Route path="*" element={<h1>Oops! Page not found</h1>} />
       </Routes>
     </div>
   );

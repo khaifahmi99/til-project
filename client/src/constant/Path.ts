@@ -5,7 +5,7 @@ export const PATHS = {
   DOCS: `${URL}/docs`,
   DOC: `${URL}/docs/`,
   DOCS_BY_TAG: `${URL}/docsTagged/`,
-  ADD_DOC: `${URL}/doc`
-}
+  ADD_DOC: `${URL}/doc`,
+};
 
 export const createDocUrl = (id: string) => `${PATHS.DOC}${id}`;

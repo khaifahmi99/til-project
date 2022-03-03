@@ -15,35 +15,35 @@ const AddTIL = () => {
       title: Yup.string()
         .max(100, 'Must be 100 characters or less')
         .required('Required'),
-      content: Yup.string()
-        .required('Required'),
+      content: Yup.string().required('Required'),
       tags: Yup.string().optional(),
     }),
-    onSubmit: values => {
+    onSubmit: (values) => {
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(values)
+        body: JSON.stringify(values),
       };
 
       fetch('http://localhost:9090/doc', requestOptions)
-        .then(response => {
-          console.log('res', response)
-          return response.json()
+        .then((response) => {
+          console.log('res', response);
+          return response.json();
         })
         .then(() => navigate('/'))
-        .catch(e => console.log(e))
-
+        .catch((e) => console.log(e));
     },
   });
 
-  return(
-    <form className='my-4' onSubmit={formik.handleSubmit}>
-      <div className='flex flex-col w-3/4 mx-auto space-y-4'>
+  return (
+    <form className="my-4" onSubmit={formik.handleSubmit}>
+      <div className="flex flex-col w-3/4 mx-auto space-y-4">
         <div>
-          <label className='flex text-lg' htmlFor="title">Title</label>
+          <label className="flex text-lg" htmlFor="title">
+            Title
+          </label>
           <input
-            className='w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
+            className="w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             id="title"
             name="title"
             type="text"
@@ -57,9 +57,11 @@ const AddTIL = () => {
         </div>
 
         <div>
-          <label className='flex text-lg' htmlFor="content">Content</label>
+          <label className="flex text-lg" htmlFor="content">
+            Content
+          </label>
           <textarea
-            className='w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
+            className="w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             id="content"
             name="content"
             onChange={formik.handleChange}
@@ -73,27 +75,29 @@ const AddTIL = () => {
         </div>
 
         <div>
-          <label className='flex text-lg' htmlFor="tags">Tags</label>
+          <label className="flex text-lg" htmlFor="tags">
+            Tags
+          </label>
           <input
-            className='w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500'
+            className="w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
             id="tags"
             name="tags"
             type="text"
             onChange={formik.handleChange}
             value={formik.values.tags}
-            placeholder='Separated by comma (eg. html,cloud computing,react.js)'
+            placeholder="Separated by comma (eg. html,cloud computing,react.js)"
           />
         </div>
 
-        <button 
+        <button
           type="submit"
-          className='h-16 bg-sky-500 text-white text-lg border-none rounded w-48 mx-auto hover:cursor-pointer'
+          className="h-16 bg-sky-500 text-white text-lg border-none rounded w-48 mx-auto hover:cursor-pointer"
         >
           Submit
         </button>
       </div>
-    </form>    
-  )
-}
+    </form>
+  );
+};
 
 export default AddTIL;
