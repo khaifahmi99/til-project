@@ -6,6 +6,7 @@
   "scripts": {
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix",
     "build": "tsc",
+    "format": "prettier --write 'src/*.(ts|tsx)'",
     "prestart": "npm run build",
     "start": "node .",
     "start:dev": "ts-node-dev --respawn --transpile-only src/app.ts",
@@ -14,6 +15,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "prettier": {
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "singleQuote": true
+  },
   "dependencies": {
     "body-parser": "^1.19.2",
     "cors": "^2.8.5",
