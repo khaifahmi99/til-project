@@ -1,0 +1,26 @@
+---
+
+version: '3'
+
+services:
+  api:
+    env_file:
+        "./api/.env"
+    build:
+      context: ./api
+      dockerfile: ./Dockerfile
+    image: "khaifahmi99/til-api"
+    ports:
+      - "9090:9090"
+  
+  web:
+    env_file:
+      "./client/.env"
+    build:
+      context: ./client
+      dockerfile: ./Dockerfile
+    image: "khaifahmi99/til-client"
+    ports:
+      - "3000:3000"
+    links:
+      - "api:be"

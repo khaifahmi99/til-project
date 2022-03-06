@@ -1,6 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import { Client } from './Client';
+import { Client } from './client';
 import bodyParser from 'body-parser';
 import cors from 'cors';
 
