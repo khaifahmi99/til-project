@@ -1,8 +1,13 @@
+import {
+  ChevronDoubleLeftIcon,
+  ChevronDoubleRightIcon,
+} from '@heroicons/react/outline';
+import classNames from 'classnames';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Pill } from '../../components/Pill';
 
-import { createDocUrl, PATHS } from '../../constant/Path';
+import { PATHS } from '../../constant/Path';
 import { BaseTIL, FullTIL } from '../../types';
 
 const Home = () => {
@@ -10,6 +15,9 @@ const Home = () => {
 
   const [tils, setTils] = React.useState<null | BaseTIL[]>(null);
   const [pageNumber, setPageNumber] = React.useState(1);
+
+  const isFirstPage = pageNumber === 1;
+  const hasNextPage = tils?.length === 30;
 
   React.useEffect(() => {
     fetch(`${PATHS.DOCS}?page=${pageNumber}`)
@@ -53,10 +61,10 @@ const Home = () => {
           tils.map((til, idx) => (
             <div
               key={`til-${idx}`}
-              className="w-full px-4 py-8 mb-4 h-36 bg-blue-200 rounded border-4 border-white flex flex-row justify-between items-center"
+              className="w-full py-8 mb-4 h-36 bg-blue-200 rounded border-4 border-white flex flex-row justify-between items-center"
               onClick={() => navigate(`/til/${til.id}`)}
             >
-              <div>
+              <div className="px-4">
                 <h1>{til.title}</h1>
                 <div className="flex flex-row">
                   {til.tags.map((tag, idx) => (
@@ -66,9 +74,39 @@ const Home = () => {
                   ))}
                 </div>
               </div>
-              <div>{til.date_created.toDateString()}</div>
+              <div className="mr-4">{til.date_created.toDateString()}</div>
             </div>
           ))}
+        {tils !== null && (
+          <div className="flex flex-row justify-between">
+            <div
+              className={classNames(
+                'w-8 h-8',
+                isFirstPage ? 'text-gray-300' : 'hover:cursor'
+              )}
+              onClick={() => {
+                if (!isFirstPage) {
+                  setPageNumber((prevPage) => prevPage - 1);
+                }
+              }}
+            >
+              <ChevronDoubleLeftIcon />
+            </div>
+            <div
+              className={classNames(
+                'w-8 h-8',
+                hasNextPage ? 'hover:cursor' : 'text-gray-300'
+              )}
+              onClick={() => {
+                if (hasNextPage) {
+                  setPageNumber((prevPage) => prevPage + 1);
+                }
+              }}
+            >
+              <ChevronDoubleRightIcon />
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
