@@ -9,6 +9,7 @@ import { TextIcon } from '../../components/TextIcon';
 import { Pill } from '../../components/Pill';
 import { createDocUrl } from '../../constant/Path';
 import { useEffect, useState } from 'react';
+import { Navbar } from '../../components/Navbar';
 
 const TIL = () => {
   const { id } = useParams();
@@ -50,48 +51,51 @@ const TIL = () => {
   }
 
   return (
-    <div className="w-4/5 mx-auto">
-      <div className="flex flex-row justify-between items-center">
-        <h1 className="text-3xl font-bold">{title}</h1>
-        <TextIcon
-          icon={<CalendarIcon />}
-          text={date ? date.toLocaleDateString() : '???'}
-        />
+    <>
+      <Navbar />    
+      <div className="w-4/5 mx-auto">
+        <div className="flex flex-row justify-between items-center">
+          <h1 className="text-3xl font-bold">{title}</h1>
+          <TextIcon
+            icon={<CalendarIcon />}
+            text={date ? date.toLocaleDateString() : '???'}
+          />
+        </div>
+        <div className="bg-gray-100 border-2 rounded border-gray-300 py-2 px-4 outline mb-4">
+          <ReactMarkdown
+            children={content}
+            remarkPlugins={[remarkGfm]}
+            components={{
+              code({ node, inline, className, children, ...props }) {
+                const match = /language-(\w+)/.exec(className || '');
+                return !inline && match ? (
+                  <SyntaxHighlighter
+                    children={String(children).replace(/\n$/, '')}
+                    style={vscDarkPlus}
+                    language={match[1]}
+                    PreTag="div"
+                    {...props}
+                  />
+                ) : (
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                );
+              },
+            }}
+          />
+        </div>
+        <div className="flex flex-row space-x-2">
+          {tags.map((tag, idx) => (
+            <div key={`tag-${idx}`}>
+              <Pill text={tag} />
+            </div>
+          ))}
+        </div>
+        <hr />
+        {/* Footer Section */}
       </div>
-      <div className="bg-gray-100 border-2 rounded border-gray-300 py-2 px-4 outline mb-4">
-        <ReactMarkdown
-          children={content}
-          remarkPlugins={[remarkGfm]}
-          components={{
-            code({ node, inline, className, children, ...props }) {
-              const match = /language-(\w+)/.exec(className || '');
-              return !inline && match ? (
-                <SyntaxHighlighter
-                  children={String(children).replace(/\n$/, '')}
-                  style={vscDarkPlus}
-                  language={match[1]}
-                  PreTag="div"
-                  {...props}
-                />
-              ) : (
-                <code className={className} {...props}>
-                  {children}
-                </code>
-              );
-            },
-          }}
-        />
-      </div>
-      <div className="flex flex-row space-x-2">
-        {tags.map((tag, idx) => (
-          <div key={`tag-${idx}`}>
-            <Pill text={tag} />
-          </div>
-        ))}
-      </div>
-      <hr />
-      {/* Footer Section */}
-    </div>
+    </>
   );
 };
 

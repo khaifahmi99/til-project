@@ -5,6 +5,7 @@ import {
 import classNames from 'classnames';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Navbar } from '../../components/Navbar';
 import { Pill } from '../../components/Pill';
 
 import { PATHS } from '../../constant/Path';
@@ -37,6 +38,7 @@ const Home = () => {
 
   return (
     <>
+      <Navbar />
       <div className="h-96 bg-red-200 flex flex-col justify-center items-center">
         <h1>Welcome to the TIL App</h1>
         <h2 className="text-base">Browse below for your TIL entries</h2>
@@ -82,7 +84,7 @@ const Home = () => {
             <div
               className={classNames(
                 'w-8 h-8',
-                isFirstPage ? 'text-gray-300' : 'hover:cursor'
+                isFirstPage ? 'text-gray-300' : 'hover:cursor-pointer'
               )}
               onClick={() => {
                 if (!isFirstPage) {
@@ -95,7 +97,7 @@ const Home = () => {
             <div
               className={classNames(
                 'w-8 h-8',
-                hasNextPage ? 'hover:cursor' : 'text-gray-300'
+                hasNextPage ? 'hover:cursor-pointer' : 'text-gray-300'
               )}
               onClick={() => {
                 if (hasNextPage) {
