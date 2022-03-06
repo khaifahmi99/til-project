@@ -52,7 +52,7 @@ const TIL = () => {
 
   return (
     <>
-      <Navbar />    
+      <Navbar />
       <div className="w-4/5 mx-auto">
         <div className="flex flex-row justify-between items-center">
           <h1 className="text-3xl font-bold">{title}</h1>

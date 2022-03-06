@@ -39,25 +39,25 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="h-96 bg-red-200 flex flex-col justify-center items-center">
+      <div className="h-96 bg-sky-900 flex flex-col justify-center items-center text-white">
         <h1>Welcome to the TIL App</h1>
         <h2 className="text-base">Browse below for your TIL entries</h2>
         <div className="flex flex-row justify-center">
           <a
             href="#entries"
-            className="bg-red-700 border-none p-4 rounded m-2 text-white w-40 text-lg no-underline text-center"
+            className="bg-sky-400 border-none p-4 rounded text-black m-2 w-40 text-lg no-underline text-center"
           >
             TIL Entries
           </a>
           <a
             href="/add/til"
-            className="bg-red-700 border-none p-4 rounded m-2 text-white w-40 text-lg no-underline text-center"
+            className="bg-sky-400 border-none p-4 rounded text-black m-2 w-40 text-lg no-underline text-center"
           >
             Create Entry
           </a>
         </div>
       </div>
-      <div id="entries" className="w-9/12 mx-auto py-8">
+      <div id="entries" className="w-9/12 mx-auto py-8 text-black">
         {tils &&
           tils.length > 0 &&
           tils.map((til, idx) => (

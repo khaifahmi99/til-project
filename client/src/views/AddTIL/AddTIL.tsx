@@ -38,7 +38,7 @@ const AddTIL = () => {
 
   return (
     <>
-      <Navbar />    
+      <Navbar />
       <form className="my-4" onSubmit={formik.handleSubmit}>
         <div className="flex flex-col w-3/4 mx-auto space-y-4">
           <div>
