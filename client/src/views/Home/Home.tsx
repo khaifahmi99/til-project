@@ -58,27 +58,40 @@ const Home = () => {
         </div>
       </div>
       <div id="entries" className="w-9/12 mx-auto py-8 text-black">
-        {tils &&
-          tils.length > 0 &&
-          tils.map((til, idx) => (
-            <div
-              key={`til-${idx}`}
-              className="w-full py-8 mb-4 h-36 bg-blue-200 rounded border-4 border-white flex flex-row justify-between items-center"
-              onClick={() => navigate(`/til/${til.id}`)}
-            >
-              <div className="px-4">
-                <h1>{til.title}</h1>
-                <div className="flex flex-row">
-                  {til.tags.map((tag, idx) => (
-                    <div key={`tag-${idx}`} className="mr-2">
-                      <Pill text={tag} />
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="mr-4">{til.date_created.toDateString()}</div>
-            </div>
-          ))}
+        {tils && tils.length > 0 && (
+          <table className="w-full text-white my-2">
+            <thead className="h-16 bg-sky-500">
+              <tr>
+                <th className="w-3/6">Title</th>
+                <th className="w-2/6">Tags</th>
+                <th className="w-1/6">Date Created</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tils.map((til) => (
+                <tr
+                  onClick={() => navigate(`/til/${til.id}`)}
+                  key={til.id}
+                  className="h-12 bg-slate-300 text-sky-900 hover:cursor-pointer"
+                >
+                  <td className="px-2">{til.title}</td>
+                  <td className="px-2">
+                    {
+                      <div className="flex flex-row">
+                        {til.tags.map((tag, index) => (
+                          <div key={`tag-${index}`} className="text-white mr-1">
+                            <Pill text={tag} />
+                          </div>
+                        ))}
+                      </div>
+                    }
+                  </td>
+                  <td className="px-2">{til.date_created.toLocaleDateString()}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
         {tils !== null && (
           <div className="flex flex-row justify-between">
             <div

@@ -46,7 +46,7 @@ const AddTIL = () => {
               Title
             </label>
             <input
-              className="w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              className="w-full bg-gray-100 rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               id="title"
               name="title"
               type="text"
@@ -64,7 +64,7 @@ const AddTIL = () => {
               Content
             </label>
             <textarea
-              className="w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              className="w-full bg-gray-100 rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               id="content"
               name="content"
               onChange={formik.handleChange}
@@ -82,7 +82,7 @@ const AddTIL = () => {
               Tags
             </label>
             <input
-              className="w-full rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
+              className="w-full bg-gray-100 rounded border-2 border-gray-400 p-2 focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500"
               id="tags"
               name="tags"
               type="text"

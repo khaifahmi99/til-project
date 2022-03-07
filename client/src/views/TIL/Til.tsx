@@ -61,7 +61,7 @@ const TIL = () => {
             text={date ? date.toLocaleDateString() : '???'}
           />
         </div>
-        <div className="bg-gray-100 border-2 rounded border-gray-300 py-2 px-4 outline mb-4">
+        <div className="bg-gray-100 border-2 text-black rounded border-gray-300 py-2 px-4 outline mb-4">
           <ReactMarkdown
             children={content}
             remarkPlugins={[remarkGfm]}
