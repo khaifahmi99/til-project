@@ -5,6 +5,7 @@ import {
 import classNames from 'classnames';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { HashLoader } from 'react-spinners';
 import { Navbar } from '../../components/Navbar';
 import { Pill } from '../../components/Pill';
 
@@ -57,6 +58,11 @@ const Home = () => {
           </a>
         </div>
       </div>
+      {tils === null && (
+        <div className='flex justify-center'>
+          <HashLoader color='white' loading={true} size={150} />
+        </div>
+      )}
       <div id="entries" className="w-9/12 mx-auto py-8 text-black">
         {tils && tils.length > 0 && (
           <table className="w-full text-white my-2">

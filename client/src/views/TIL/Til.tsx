@@ -10,6 +10,7 @@ import { Pill } from '../../components/Pill';
 import { createDocUrl } from '../../constant/Path';
 import { useEffect, useState } from 'react';
 import { Navbar } from '../../components/Navbar';
+import { HashLoader } from 'react-spinners';
 
 const TIL = () => {
   const { id } = useParams();
@@ -43,7 +44,13 @@ const TIL = () => {
   }, [url]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div className=''>
+        <div className='h-screen flex justify-center items-center'>
+          <HashLoader color='white' loading={true} size={150} />
+        </div>        
+      </div>
+    );
   }
 
   if (hasError) {
