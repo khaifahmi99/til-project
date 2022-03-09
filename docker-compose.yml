@@ -21,6 +21,6 @@ services:
       dockerfile: ./Dockerfile
     image: "khaifahmi99/til-client"
     ports:
-      - "3000:3000"
+      - "80:80"
     links:
       - "api:be"
