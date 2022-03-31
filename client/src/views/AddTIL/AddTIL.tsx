@@ -2,6 +2,7 @@ import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';
 import { Navbar } from '../../components/Navbar';
+import { PATHS } from '../../constant/Path';
 
 const AddTIL = () => {
   const navigate = useNavigate();
@@ -26,7 +27,7 @@ const AddTIL = () => {
         body: JSON.stringify(values),
       };
 
-      fetch('http://localhost:9090/doc', requestOptions)
+      fetch(PATHS.ADD_DOC, requestOptions)
         .then((response) => {
           console.log('res', response);
           return response.json();

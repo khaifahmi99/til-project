@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv';
 import { Client } from './client';
 import bodyParser from 'body-parser';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -10,11 +11,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 const port = process.env.PORT || 5000;
 
-app.use((_, res, next) => {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
-  next();
-});
+app.use(cors({
+  origin: '*'
+}));
 
 app.get('/', (_, res) => {
   res.send('Hello world!');
